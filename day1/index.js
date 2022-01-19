@@ -1,8 +1,9 @@
-const fs = require('fs')
+// const fs = require("fs");
 
-const file = fs.readFileSync('input.txt').toString('utf8');
-console.log("file", file)
+// const file = fs.readFileSync("input.txt").toString("utf8");
 
-let horizontal = 0;
-let depth = 0;
+const something = (n) => {
+  return n;
+};
 
+module.exports = { something };
