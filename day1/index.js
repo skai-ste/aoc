@@ -7,7 +7,15 @@ const solve = (fileName) => {
     .toString("utf8")
     .split("\n");
 
-  return fileName;
+  let count = 0;
+  for (let i = 1; i < file.length; i++) {
+    let measurement = parseInt(file[i]);
+    let prevMeasurement = parseInt(file[i - 1]);
+    if (measurement > prevMeasurement) {
+      count += 1;
+    }
+  }
+  return count;
 };
 
 module.exports = { solve };
