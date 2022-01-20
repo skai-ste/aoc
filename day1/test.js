@@ -1,9 +1,9 @@
 const test = require("ava");
 
-const { something } = require("./"); //require something in current directory
+const { solve } = require("./"); //require something in current directory
 
 test("checks example", (t) => {
-  t.is(something(3), 3);
+  t.is(solve("test-input.txt"), 7);
   // t.pass(); //test is passing
 });
 

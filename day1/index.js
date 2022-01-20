@@ -1,9 +1,13 @@
-// const fs = require("fs");
+const fs = require("fs");
 
-// const file = fs.readFileSync("input.txt").toString("utf8");
+const solve = (fileName) => {
+  // __dirname - get the current directory of the current file.
+  const file = fs
+    .readFileSync(__dirname + "/" + fileName)
+    .toString("utf8")
+    .split("\n");
 
-const something = (n) => {
-  return n;
+  return fileName;
 };
 
-module.exports = { something };
+module.exports = { solve };
