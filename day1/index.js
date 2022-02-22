@@ -1,7 +1,6 @@
 const fs = require("fs");
 
 const part1 = (fileName) => {
-  // __dirname - get the current directory of the current file.
   const file = fs
     .readFileSync(__dirname + "/" + fileName)
     .toString("utf8")
