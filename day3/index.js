@@ -6,43 +6,18 @@ const part1 = (fileName) => {
     .toString("utf8")
     .split("\n");
 
-  let grid = [];
+  let state = { gamaRate: "", epsilonRate: "" };
 
   for (let columnIndex = 0; columnIndex < file[0].length; columnIndex++) {
-    let column = [];
-    for (let rowIndex = 0; rowIndex < file.length; rowIndex++) {
-      let line = file[rowIndex];
-      let digit = line[columnIndex];
-      column.push(digit);
-    }
-    grid.push(column);
+    const column = file.map((row) => row[columnIndex]).join("");
+
+    const gamaRate =
+      Array.from(column.matchAll("1")).length > column.length / 2;
+
+    state.gamaRate += Number(gamaRate);
+    state.epsilonRate += Number(!gamaRate);
   }
-
-  let gamaRate = [];
-  let epsilonRate = [];
-
-  for (let i = 0; i < grid.length; i++) {
-    let column = grid[i];
-    let one = 0;
-    let zero = 0;
-    for (let j = 0; j < column.length; j++) {
-      if (Number(column[j]) === 0) {
-        zero += 1;
-      }
-      if (Number(column[j]) === 1) {
-        one += 1;
-      }
-    }
-    if (one > zero) {
-      gamaRate.push("1");
-      epsilonRate.push("0");
-    } else {
-      gamaRate.push("0");
-      epsilonRate.push("1");
-    }
-  }
-
-  return parseInt(gamaRate.join(""), 2) * parseInt(epsilonRate.join(""), 2);
+  return parseInt(state.gamaRate, 2) * parseInt(state.epsilonRate, 2);
 };
 
 module.exports = { part1 };
