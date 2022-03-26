@@ -26,6 +26,23 @@ const leastCommonValue = (column) => {
   return mostCommonValue(column) === "0" ? "1" : "0";
 };
 
+const getRating = (rating, columnIndex, isOxygen) => {
+  const column = rating.map((row) => row[columnIndex]).join("");
+  let common;
+
+  if (isOxygen) {
+    common = leastCommonValue(column);
+  } else {
+    common = mostCommonValue(column);
+  }
+
+  if (rating.length > 1) {
+    rating = rating.filter((number) => number[columnIndex] === common);
+  }
+
+  return rating;
+};
+
 const part2 = (fileName) => {
   const file = readInput(__dirname, fileName);
 
@@ -33,26 +50,10 @@ const part2 = (fileName) => {
   let co2ScrubberRating = Array.from(file);
 
   for (let columnIndex = 0; columnIndex < file[0].length; columnIndex++) {
-    const oxygenColumn = oxygenGeneratorRating
-      .map((row) => row[columnIndex])
-      .join("");
-    const co2Column = co2ScrubberRating.map((row) => row[columnIndex]).join("");
-
-    const mostCommon = mostCommonValue(oxygenColumn);
-    const leastCommon = leastCommonValue(co2Column);
-
-    if (oxygenGeneratorRating.length > 1) {
-      oxygenGeneratorRating = oxygenGeneratorRating.filter(
-        (number) => number[columnIndex] === mostCommon
-      );
-    }
-
-    if (co2ScrubberRating.length > 1) {
-      co2ScrubberRating = co2ScrubberRating.filter(
-        (number) => number[columnIndex] === leastCommon
-      );
-    }
+    oxygenGeneratorRating = getRating(oxygenGeneratorRating, columnIndex, true);
+    co2ScrubberRating = getRating(co2ScrubberRating, columnIndex, false);
   }
+
   return (
     parseInt(oxygenGeneratorRating[0], 2) * parseInt(co2ScrubberRating[0], 2)
   );
