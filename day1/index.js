@@ -1,11 +1,7 @@
-const fs = require("fs");
+const { readInput } = require("../helpers");
 
 const part1 = (fileName) => {
-  const file = fs
-    .readFileSync(__dirname + "/" + fileName)
-    .toString("utf8")
-    .split("\n")
-    .map((item) => parseInt(item));
+  const file = readInput(__dirname, fileName).map((item) => parseInt(item));
 
   let count = 0;
   for (let i = 1; i < file.length; i++) {
@@ -19,11 +15,7 @@ const part1 = (fileName) => {
 };
 
 const part2 = (fileName) => {
-  const file = fs
-    .readFileSync(__dirname + "/" + fileName)
-    .toString("utf8")
-    .split("\n")
-    .map((item) => parseInt(item)); // convert string in array to be numbers
+  const file = readInput(__dirname, fileName).map((item) => parseInt(item));
 
   let count = 0;
   for (let i = 0; i < file.length - 3; i++) {

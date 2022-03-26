@@ -1,10 +1,7 @@
-const fs = require("fs");
+const { readInput } = require("../helpers");
 
 const part1 = (fileName) => {
-  const file = fs
-    .readFileSync(__dirname + "/" + fileName)
-    .toString("utf8")
-    .split("\n"); //split by lines
+  const file = readInput(__dirname, fileName);
 
   let position = 0;
   let depth = 0;
@@ -21,10 +18,7 @@ const part1 = (fileName) => {
 };
 
 const part2 = (fileName) => {
-  const file = fs
-    .readFileSync(__dirname + "/" + fileName)
-    .toString("utf8")
-    .split("\n"); //split by lines
+  const file = readInput(__dirname, fileName);
 
   let position = 0;
   let depth = 0;
