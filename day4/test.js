@@ -6,9 +6,9 @@ test("checks example part1", (t) => {
   t.is(part1("test-input.txt"), 4512);
 });
 
-// test("checks full data part1", (t) => {
-//   t.is(part1("input.txt"), 0000);
-// });
+test("checks full data part1", (t) => {
+  t.is(part1("input.txt"), 16674);
+});
 
 // test("checks example part2", (t) => {
 //   t.is(part2("test-input.txt"), 0000);
